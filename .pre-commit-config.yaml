@@ -7,13 +7,23 @@ repos:
       - id: check-toml
       - id: trailing-whitespace
       - id: check-ast
-  - repo: local
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        types: [ python ]
+        args: [--max-line-length, "100"]
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
     hooks:
       - id: black
         name: black
         entry: black
         language: system
         types: [ python ]
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
       - id: isort
         name: isort
         entry: isort
@@ -28,9 +38,3 @@ repos:
             '--use-parentheses',
             '--ensure-newline-before-comments',
         ]
-      - id: flake8
-        name: flake8
-        entry: flake8
-        language: system
-        types: [ python ]
-        args: [--max-line-length, "100"]
